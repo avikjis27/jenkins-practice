@@ -1,0 +1,3 @@
+tasks:
+  - name: Bootstrap
+    command: ./bootstrap.sh

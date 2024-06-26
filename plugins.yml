@@ -1,0 +1,13 @@
+plugins:
+  - artifactId: workflow-job
+  - artifactId: git
+  - artifactId: github
+  - artifactId: docker-plugin
+  - artifactId: job-import-plugin
+  - artifactId: configuration-as-code
+  - artifactId: workflow-scm-step
+  - artifactId: workflow-cps
+  - artifactId: job-dsl
+  - artifactId: pipeline-groovy-lib
+  - artifactId: groovy
+  - artifactId: pipeline-model-definition

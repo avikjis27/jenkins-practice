@@ -1,0 +1,46 @@
+jenkins:
+  systemMessage: "Jenkins configured automatically by Jenkins Configuration as Code plugin\n\n"
+  securityRealm:
+    local:
+      allowsSignup: true
+      users:
+        - id: "deployer"
+          name: "deployer"
+          password: "deployer"
+          properties:
+            - "apiToken"
+            - "consoleUrlProvider"
+            - "myView"
+            - "timezone"
+            - "experimentalFlags"
+            - "mailer"
+            - preferredProvider:
+                providerId: "default"
+  globalNodeProperties:
+  - envVars:
+      env:
+      - key: GITHUB_URL
+        value: https://github.com/avikjis27
+      - key: DOCKER_HUB_USER
+        value: avikjis27
+  slaveAgentPort: 50000
+  agentProtocols:
+    - "JNLP4-connect"
+    - "Ping"
+
+security:
+  globaljobdslsecurityconfiguration:
+    useScriptSecurity: false
+  
+jobs:
+  - script: |
+      freeStyleJob('seeder-job') {
+        logRotator(-1, 10)
+        scm {
+            github(ownerAndProject = 'avikjis27/jenkins-practice', branch= 'main', protocol = 'https')
+        }
+        steps {
+            dsl(['job-dsls/simple_pipeline.groovy'], 'DELETE')
+        }
+      }
+      
