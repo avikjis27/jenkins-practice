@@ -40,10 +40,7 @@ jobs:
             github(ownerAndProject = 'avikjis27/jenkins-practice', branch= 'main', protocol = 'https')
         }
         steps {
-            dsl([
-              'job-dsls/simple_pipeline.groovy',
-              'job-dsls/multi_branch_pipeline.groovy'
-            ], 'DELETE')
+            dsl(['job-dsls/*.groovy'], 'DELETE')
         }
       }
       
